@@ -9,9 +9,10 @@ class TestView extends TestCase {
     public function testIt()
     {
         $app = new App();
-        $view = View::prepare($app, 'test', []);
+        $view = new View($app);
+        $text = $view->prepare('test', []);
 
-        $test = true;
+        $this->assertTrue($text == 'проба');
 
     }
 }

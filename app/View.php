@@ -12,17 +12,29 @@ namespace beejeetest;
 class View
 {
     const TEMPLATES = 'templates';
-    public static function display($app, $name, $params)
+    private $app;
+
+    /**
+     * View constructor.
+     * @param $app
+     */
+    public function __construct($app)
     {
-        $templateFile = $app->root.DIRECTORY_SEPARATOR.self::TEMPLATES.DIRECTORY_SEPARATOR.$name.'.inc';
+        $this->app = $app;
+    }
+
+
+    public function display($name, $params)
+    {
+        $templateFile = $this->app->root.DIRECTORY_SEPARATOR.self::TEMPLATES.DIRECTORY_SEPARATOR.$name.'.inc';
         extract($params);
         include $templateFile;
     }
 
-    public static function prepare($app, $name, $params)
+    public function prepare($name, $params)
     {
         ob_start();
-        self::display($app, $name, $params);
+        $this->display($name, $params);
         $text = ob_get_contents();
         ob_end_clean();
 
