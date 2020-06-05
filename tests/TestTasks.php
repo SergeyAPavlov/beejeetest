@@ -1,8 +1,6 @@
 <?php
 
 use beejeetest\App;
-use beejeetest\Models\User;
-use beejeetest\Models\Users;
 use beejeetest\Models\Tasks;
 
 use PHPUnit\Framework\TestCase;

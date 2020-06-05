@@ -11,6 +11,8 @@ class App
     private $config;
     private $db;
 
+    public $root;
+
     /**
      * App constructor.
      */
@@ -18,6 +20,7 @@ class App
     {
         $config = $this->config = Config::get();
         $this->db = ServiceLocator::getDb($config['host'], $config['user'], $config['password'], $config['name']);
+        $this->root = __DIR__ ;
     }
 
     /**
