@@ -1,0 +1,21 @@
+{
+  "name": "pavlov/beejeetest",
+  "description": "simple MVC example",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Sergey Pavlov",
+      "email": "sclavium@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5"
+  },
+  "autoload": {
+    "psr-4": {"beejeetest\\": "app/"}
+  }
+}
