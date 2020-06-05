@@ -39,6 +39,9 @@ class App
         return $this->db;
     }
 
-
+    public function getSole()
+    {
+        return $this->config['sole'];
+    }
 
 }

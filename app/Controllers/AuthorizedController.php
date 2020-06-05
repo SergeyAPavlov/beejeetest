@@ -9,12 +9,12 @@ use beejeetest\Services\Authorize;
 use beejeetest\View;
 use http\Header;
 
-class AuthorizedController extends BaseController
+abstract class AuthorizedController extends BaseController
 {
 
     public function checkAuth()
     {
-        $check = Authorize::check(($this->app->getConfig())['sole']);
+        $check = Authorize::check(($this->app->getSole()));
         if (!$check) {
             header("Location:/auth");
             exit();
