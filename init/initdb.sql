@@ -23,3 +23,7 @@ CREATE TABLE `statuses` (
 )
     COLLATE='utf8_general_ci'
 ;
+
+INSERT INTO `tasks` (`id`, `username`, `email`, `text`) VALUES ('1', 'u1', 'u1@u2', 'test1');
+INSERT INTO `tasks` (`id`, `username`, `email`, `text`) VALUES ('2', 'u2', 'u2@u2', 'test2');
+INSERT INTO `tasks` (`id`, `username`, `email`, `text`) VALUES ('3', 'u3', 'u3@u2', 'test3');
