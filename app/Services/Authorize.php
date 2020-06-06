@@ -57,6 +57,14 @@ class Authorize
         return null;
     }
 
+    public static function getUser(Db $db)
+    {
+        $user = new User($db);
+        $user->find('name', self::getLogin());
+        if (!empty($user->id)) return $user;
+        return null;
+    }
+
     /**
      * @param User $user
      * @return bool

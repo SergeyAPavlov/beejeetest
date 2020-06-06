@@ -4,6 +4,7 @@ namespace beejeetest;
 
 use beejeetest\Controllers\AddTaskController;
 use beejeetest\Controllers\Controller;
+use beejeetest\Controllers\EditTaskController;
 use beejeetest\Controllers\LogoutController;
 use beejeetest\Controllers\NoneController;
 use beejeetest\Controllers\AuthController;
@@ -22,7 +23,8 @@ class Router
             '/auth'=>AuthController::class,
             '/logout'=>LogoutController::class,
             '/'=>TasksController::class,
-            '/add'=>AddTaskController::class
+            '/add'=>AddTaskController::class,
+            '/edit'=>EditTaskController::class
         ];
     }
 
