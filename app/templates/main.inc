@@ -24,6 +24,6 @@ if ($logged) {
             </ul>
         </div>
     </div>
-<?php } ?>
+<?php }  var_export($_SERVER); ?>
 </body>
 </html>

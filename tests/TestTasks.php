@@ -22,5 +22,19 @@ class TestTasks extends TestCase {
 
     }
 
+    public function testCountTasks()
+    {
+
+        $app = new App();
+        $db = $app->getDb();
+
+        $class = new Tasks($db);
+        $count = $class->countTasks();
+
+        $this->assertTrue($count == 3);
+
+    }
+
+
 
 }

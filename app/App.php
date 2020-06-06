@@ -20,7 +20,7 @@ class App
      * App constructor.
      * @param Router $router
      */
-    public function __construct(Router $router)
+    public function __construct(Router $router = null)
     {
         $config = $this->config = Config::get();
         $this->db = ServiceLocator::getDb($config['host'], $config['user'], $config['password'], $config['name']);

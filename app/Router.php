@@ -5,8 +5,8 @@ namespace beejeetest;
 use beejeetest\Controllers\Controller;
 use beejeetest\Controllers\LogoutController;
 use beejeetest\Controllers\NoneController;
-use beejeetest\Services\Authorize;
 use beejeetest\Controllers\AuthController;
+use beejeetest\Controllers\TasksController;
 
 class Router
 {
@@ -20,6 +20,7 @@ class Router
         $this->routes = [
             '/auth'=>AuthController::class,
             '/logout'=>LogoutController::class,
+            '/'=>TasksController::class
         ];
     }
 
@@ -37,8 +38,11 @@ class Router
 
     public static function getRequest()
     {
-        $request = ['get'=>$_GET, 'post'=>$_POST, 'uri'=>$_SERVER['REQUEST_URI']];
-        if ($request['uri'] == '') $request['uri'] = '/';
+        $uriArray = explode('?', $_SERVER['REQUEST_URI']);
+        $uri = current($uriArray);
+        if ($uri == '') $uri = '/';
+        $request = ['get'=>$_GET, 'post'=>$_POST, 'uri'=>$uri, 'query'=>$_SERVER['QUERY_STRING']];
+
         return $request;
     }
 
