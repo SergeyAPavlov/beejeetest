@@ -28,7 +28,7 @@ class Tasks
         $orderBy = (empty($order) ? '' : 'ORDER BY ' . $order);
         $rows = [];
         $result = $this->db->query(
-            "SELECT username, email, text, name as status
+            "SELECT t1.id as id, username, email, text, name as status
                     FROM $this->table as t1
                     LEFT JOIN $this->addTable as t2 
                     ON t1.status_id = t2.id                    
