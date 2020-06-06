@@ -23,6 +23,7 @@ class EditTaskController extends BaseController implements Controller
         }
 
         $id = $this->request['get']['id'];
+        if(empty($id)) $id = $this->request['post']['id'];
         $model = new Tasks($this->db);
         $task = $model->load($id);
 
@@ -31,24 +32,20 @@ class EditTaskController extends BaseController implements Controller
             exit();
         }
 
+        if (!empty($this->request['post'])) {
+            $updated = $this->fetchForm($this->request, $task);
+            header("Location:/edit?id=".$id);
+            exit();
+        }
+
         if (is_object($task)) {
             $vars['task'] = $task;
         }
-
-        if (!empty($this->request['post'])) {
-            $updated = $this->fetchForm($this->request);
-            if (is_integer($updated ))  {
-                if ($updated == 1) $vars['message'] = 'Задача успешно отредактирована';
-                else $vars['message'] = 'Ошибка обновления задачи в базе';
-            }
-            else $vars['message'] = $updated;
-        }
-
         return $this->view->prepare('edit', $vars);
 
     }
 
-    public function fetchForm($request)
+    public function fetchForm($request, $task)
     {
         $post = $request['post'];
 
@@ -60,8 +57,14 @@ class EditTaskController extends BaseController implements Controller
         }
 
         $model = new Tasks($this->db);
-        $added = $model->addTask($post);
-        return $added;
+        if ($task->text != $post['text']) $task->edited = 1;
+        $task->username = $post['username'];
+        $task->email = $post['email'];
+        $task->status_id = (integer)$post['status_id'];
+        $task->text = $post['text'];
+
+        $updated = $model->updateTask($task);
+        return $updated;
 
     }
 

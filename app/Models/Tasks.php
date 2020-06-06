@@ -12,7 +12,6 @@ class Tasks
     private $table = 'tasks';
     private $addTable = 'Statuses';
     public $id;
-    public $name;
 
     /**
      * Status constructor.
@@ -74,6 +73,20 @@ class Tasks
         $query = "INSERT INTO $this->table (`username`, `email`, `text`, `status_id`) VALUES ('$task->username', '$task->email', '$task->text', 1)";
         $result = $this->db->query($query);
         return $this->db->getAffected();
+    }
+
+    public function updateTask($task)
+    {
+        $task = (object)$task;
+        if (empty($task->id)) return false;
+
+        foreach ($task as $key=>$item) {
+            if (!is_object($item)) $task->$key = mysqli_real_escape_string($this->db->getDb(), $item);
+        }
+
+        $query = "UPDATE `$this->table` SET `username`='$task->username', `email`='$task->email', `text`='$task->text', `status_id`=$task->status_id, `edited`=$task->edited WHERE `$this->table`.`id` = $task->id";
+        $result = $this->db->query($query);
+        return $result;
     }
 
 }
