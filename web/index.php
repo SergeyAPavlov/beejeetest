@@ -7,9 +7,9 @@ try {
     require_once("../vendor/autoload.php");
 
     $router = new Router();
-    $app = new App();
+    $app = new App($router);
     $controller = $router->get($app);
-    $controller->fetch();
+    $controller->fetchAll();
 
 
 } catch (\Error $t) {

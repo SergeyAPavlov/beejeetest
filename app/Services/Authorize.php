@@ -35,6 +35,11 @@ class Authorize
         return false;
     }
 
+    public static function getLogin()
+    {
+        if (!empty($_COOKIE['login'])) return $_COOKIE['login'];
+        return '';
+    }
 
     /**
      * @param Db $db

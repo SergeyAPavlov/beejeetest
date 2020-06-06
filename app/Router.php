@@ -3,6 +3,7 @@
 namespace beejeetest;
 
 use beejeetest\Controllers\Controller;
+use beejeetest\Controllers\LogoutController;
 use beejeetest\Controllers\NoneController;
 use beejeetest\Services\Authorize;
 use beejeetest\Controllers\AuthController;
@@ -17,7 +18,10 @@ class Router
     public function __construct()
     {
         $this->routes = [
-            'g:/auth'=>AuthController::class
+            'g:/auth'=>AuthController::class,
+            'a:/auth'=>AuthController::class,
+            'g:/logout'=>LogoutController::class,
+            'a:/logout'=>LogoutController::class,
         ];
     }
 

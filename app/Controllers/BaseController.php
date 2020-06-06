@@ -5,6 +5,7 @@ namespace beejeetest\Controllers;
 
 
 use beejeetest\App;
+use beejeetest\Services\Authorize;
 use beejeetest\View;
 
 abstract class BaseController implements Controller
@@ -12,6 +13,7 @@ abstract class BaseController implements Controller
     protected $app;
     protected $db;
     protected $view;
+    protected $request;
 
 
     /**
@@ -23,18 +25,23 @@ abstract class BaseController implements Controller
         $this->app = $app;
         $this->db = $this->app->getDb();
         $this->view = new View($this->app);
+        $this->request = $app->getRouter()->getRequest();
     }
 
 
     public function fetch()
     {
-
+        return '';
     }
 
     public function fetchAll()
     {
-        return $this->fetch();
+        $vars['content'] = $this->fetch();
+        $text = $this->view->prepare('main', $vars);
+        echo  $text;
+
     }
+
 
 
 }
