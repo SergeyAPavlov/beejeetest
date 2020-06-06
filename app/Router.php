@@ -18,18 +18,16 @@ class Router
     public function __construct()
     {
         $this->routes = [
-            'g:/auth'=>AuthController::class,
-            'a:/auth'=>AuthController::class,
-            'g:/logout'=>LogoutController::class,
-            'a:/logout'=>LogoutController::class,
+            '/auth'=>AuthController::class,
+            '/logout'=>LogoutController::class,
         ];
     }
 
 
     public function getRoute($request, App $app)
     {
-        $check = Authorize::check(($app->getSole()));
-        $key = ($check ? 'a' : 'g') . ':' . $request['uri'];
+
+        $key =  $request['uri'];
         if (empty($this->routes[$key])) return new NoneController($app);
         $name = $this->routes[$key];
         return new $name($app);
