@@ -64,4 +64,16 @@ class Tasks
         }
         return current($row);
     }
+
+    public function addTask($task)
+    {
+        $task = (object)$task;
+        foreach ($task as $key=>$item) {
+            $task->$key = mysqli_real_escape_string($this->db->getDb(), $item);
+        }
+        $query = "INSERT INTO $this->table (`username`, `email`, `text`, `status_id`) VALUES ('$task->username', '$task->email', '$task->text', 1)";
+        $result = $this->db->query($query);
+        return $this->db->getAffected();
+    }
+
 }

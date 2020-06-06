@@ -2,6 +2,7 @@
 
 namespace beejeetest;
 
+use beejeetest\Controllers\AddTaskController;
 use beejeetest\Controllers\Controller;
 use beejeetest\Controllers\LogoutController;
 use beejeetest\Controllers\NoneController;
@@ -20,7 +21,8 @@ class Router
         $this->routes = [
             '/auth'=>AuthController::class,
             '/logout'=>LogoutController::class,
-            '/'=>TasksController::class
+            '/'=>TasksController::class,
+            '/add'=>AddTaskController::class
         ];
     }
 
@@ -41,7 +43,11 @@ class Router
         $uriArray = explode('?', $_SERVER['REQUEST_URI']);
         $uri = current($uriArray);
         if ($uri == '') $uri = '/';
-        $request = ['get'=>$_GET, 'post'=>$_POST, 'uri'=>$uri, 'query'=>$_SERVER['QUERY_STRING']];
+        $post = [];
+        foreach ($_POST as $key=>$field) {
+            $post[$key] = htmlspecialchars($field);
+        }
+        $request = ['get'=>$_GET, 'post'=>$post, 'uri'=>$uri, 'query'=>$_SERVER['QUERY_STRING']];
 
         return $request;
     }

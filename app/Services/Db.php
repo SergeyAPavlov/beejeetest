@@ -26,5 +26,10 @@ class Db
         return $this->db;
     }
 
+    public function getAffected()
+    {
+        return $this->db->affected_rows;
+    }
+
 
 }

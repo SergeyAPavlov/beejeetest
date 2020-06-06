@@ -1,4 +1,5 @@
 <h3>Список задач</h3>
+<h4 style="text-align: right"><a href="/auth">Авторизация</a></h4>
 
     <table class="table">
         <tr>
@@ -30,3 +31,4 @@
     </table>
 
 <h4 style="text-align: center"> <?= $pages ?> </h4>
+<h4 style="text-align: right"><a href="/add">Новая задача</a></h4>

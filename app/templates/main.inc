@@ -9,21 +9,10 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/bootstrap.js"></script>
 
-
+<div style="margin: 30px">
 <?= $content ?>
-<?php
-if ($logged) {
-    ?>
-    <div class="navbar">
-        <div class="navbar-inner">
-            <a class="brand" href="#">Реализация CRUD</a>
-            <ul class="nav">
-                <li class="active"><a href="/">На главную</a></li>
+</div>
 
-                <li><a href=/logout>выйти</a></li>
-            </ul>
-        </div>
-    </div>
-<?php }  var_export($_SERVER); ?>
+
 </body>
 </html>
