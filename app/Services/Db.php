@@ -11,6 +11,7 @@ class Db
     public function __construct($host, $user, $password, $name)
     {
         $this->db = new mysqli($host, $user, $password, $name);
+        $this->db->set_charset('utf8');
     }
 
     public function query($query)

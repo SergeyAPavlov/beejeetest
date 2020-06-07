@@ -8,6 +8,7 @@
             <th>email</th>
             <th>Текст задачи</th>
             <th>Статус</th>
+            <th>Отредактировано администратором</th>
 
         </tr>
         <tr>
@@ -16,6 +17,7 @@
             <td><a href="/?order=email">по возрастанию</a> | <a href="/?order=email&sort=desc">по убыванию</a></td>
             <td></td>
             <td><a href="/?order=status">по возрастанию</a> | <a href="/?order=status&sort=desc">по убыванию</a></td>
+            <td></td>
         </tr>
 
             <?php  foreach ($tasks as $task) {  ?>
@@ -25,6 +27,7 @@
             <td><?= $task['email'] ?></td>
             <td><?= $task['text'] ?></td>
             <td><?= $task['status'] ?></td>
+            <td><?= $task['edited'] ?></td>
         </tr>
             <?php  }  ?>
 

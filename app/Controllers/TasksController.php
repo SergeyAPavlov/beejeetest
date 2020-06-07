@@ -14,15 +14,15 @@ class TasksController extends BaseController implements Controller
         $limit = 3;
         $model = new Tasks($this->db);
         $order = 't1.id';
-        if ($this->request['get']['order'] == 'username') {
+        if (@$this->request['get']['order'] == 'username') {
             $order = 'username';
-        } elseif ($this->request['get']['order'] == 'email') {
+        } elseif (@$this->request['get']['order'] == 'email') {
             $order = 'email';
-        } elseif ($this->request['get']['order'] == 'status') {
+        } elseif (@$this->request['get']['order'] == 'status') {
             $order = 'status';
         }
 
-        if ($this->request['get']['sort'] == 'desc') {
+        if (@$this->request['get']['sort'] == 'desc') {
             $order = $order . ' DESC ';
         }
 

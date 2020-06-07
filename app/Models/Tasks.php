@@ -10,7 +10,7 @@ class Tasks
     use DbOps;
     private $db;
     private $table = 'tasks';
-    private $addTable = 'Statuses';
+    private $addTable = 'statuses';
     public $id;
 
     /**
@@ -26,12 +26,13 @@ class Tasks
     {
         $orderBy = (empty($order) ? '' : 'ORDER BY ' . $order);
         $rows = [];
-        $result = $this->db->query(
-            "SELECT t1.id as id, username, email, text, name as status
+        $query = "SELECT t1.id as id, username, email, text, name as status, edited
                     FROM $this->table as t1
                     LEFT JOIN $this->addTable as t2 
                     ON t1.status_id = t2.id                    
-                    $orderBy $limit"
+                    $orderBy $limit";
+        $result = $this->db->query(
+            $query
         );
         if ($result) {
             while ($row = $result->fetch_assoc()) {

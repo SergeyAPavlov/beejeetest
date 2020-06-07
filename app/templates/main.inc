@@ -13,6 +13,6 @@
 <?= $content ?>
 </div>
 
-
+<a href="/">К списку задач</a>
 </body>
 </html>
